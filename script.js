@@ -58,18 +58,6 @@ while (computerWins < 5 || playerWins < 5) {
             `NOOOOoooo I didn't think you'd use ${playerChoice}! I shouldn't have used ${rockPaperScissors(computerSelection)}!`
         ];
 
-        // console.log(playRound(playerChoice, computerSelection));
-        // switch (playRound(playerChoice, computerSelection)) {
-        //     case 0:
-        //         console.log(draw[Math.floor(Math.random() * 5)]);
-        //     case 1:
-        //         console.log(lost[computerWins]);
-        //         computerWins++;
-        //     case 2:
-        //         console.log(won[playerWins]);
-        //         playerWins++;
-        //     default:
-        //         console.log("An Error occured!")
         if (playRound(playerChoice, computerSelection) == 0) {
             console.log(draw[Math.floor(Math.random() * 5)]);
         } else if (playRound(playerChoice, computerSelection) == 1) {
