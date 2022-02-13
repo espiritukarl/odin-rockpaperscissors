@@ -92,12 +92,17 @@ button {
 #player-results, #computer-results, .player-dialogue, .computer-dialogue {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.8em;
+    text-align: center;
 }
 
 .footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.footer img {
+    height: 1em;
 }
 
 .title, button, span {
@@ -109,10 +114,6 @@ button {
     font-weight: 700;
 }
 
-.footer img {
-    height: 1em;
-}
-
 @media only screen and (max-width: 600px) {
     .container {
         flex-direction: column;
@@ -121,9 +122,9 @@ button {
         gap: 20px;
     }
     .title {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     #player-results, #computer-results, .player-dialogue, .computer-dialogue {
-        font-size: 1.2em
+        font-size: 1em
     }
 }
