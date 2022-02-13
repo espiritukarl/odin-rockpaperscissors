@@ -117,4 +117,13 @@ button {
     .container {
         flex-direction: column;
     }
+    .flex-container {
+        gap: 20px;
+    }
+    .title {
+        font-size: 2em;
+    }
+    #player-results, #computer-results, .player-dialogue, .computer-dialogue {
+        font-size: 1.2em
+    }
 }
