@@ -1,13 +1,35 @@
 let computerWins = 0;
 let playerWins = 0;
+let playerChoice;
+
+const buttonPressed = document.querySelectorAll(".player-button");
+const playerRock = document.getElementsByClassName("player-button rock");
+const playerPaper = document.getElementsByClassName("player-button paper");
+const playerScissors = document.getElementsByClassName("player-button scissors");
+
+const computerButton = document.querySelectorAll(".computer-button");
+const computerRock = document.querySelector(".crock");
+const computerScissors = document.querySelector(".cscissors");
+const computerPaper = document.querySelector(".cpaper");
+
+const playerResults = document.querySelector("#player-results");
+const computerResults = document.querySelector("#computer-results");
+const playerDialogue = document.querySelector(".player-dialogue");
+const computerDialogue = document.querySelector(".computer-dialogue");
+
+playerResults.classList.add("resulsts-text");
+computerResults.classList.add("results-text");
 
 let rockPaperScissors = (choice) => {
     switch (choice) {
         case 0:
+            computerRock.classList.add('hovered');
             return 'rock';
         case 1:
+            computerPaper.classList.add('hovered');
             return 'paper';
         case 2:
+            computerScissors.classList.add('hovered');
             return 'scissors';
         default:
             alert("An Error occured!");
@@ -28,62 +50,68 @@ let playRound = (playerChoice, computerSelection) => {
     }
 };
 
-while (computerWins < 5 || playerWins < 5) {
-    let computerSelection = Math.floor(Math.random() * 3);
-    let playerChoice = prompt("Please enter rock, paper, or scissors: ").toLowerCase();
-    if (playerChoice === 'rock' || playerChoice === 'scissors' || playerChoice === 'paper') {
+computerButton.forEach((button) => {
+    button.addEventListener('click', () => {
+        playerDialogue.textContent = "LOL! That isn't your button dummy.";
+        computerDialogue.textContent = "Hey! Stop touching me uwu";
+    });
+});
 
-        //Just putting scripts here for fun
-        const draw = [
-            `Rats! A Draw, didn't think we'd both draw ${playerChoice}`,
-            `Great minds think a like I guess, that's a ${playerChoice}.`,
-            `Yo! Stop choosing ${playerChoice}, you knew I\'d use that too!`,
-            `Dang, drew huh? Guess we both knew ${playerChoice} was the proper choice there`,
-            `No way you choose ${playerChoice}! Damn draws!`
-        ];
 
-        const lost = [
-            `Hah! Too easy! If you didn\'t know your ${playerChoice} loses to my ${rockPaperScissors(computerSelection)}.`,
-            `2 stands for my wins and how easy this is. Don\'t use ${playerChoice} since that loses to my ${rockPaperScissors(computerSelection)}.`,
-            `3 Down, 2 to go! I expected you to choose ${playerChoice}, that\'s why I went ${rockPaperScissors(computerSelection)}.`,
-            `Uhoh I only need 1 more win, you scared? I easily read your ${playerChoice}! Easy counter with the ${rockPaperScissors(computerSelection)}.`,
-            `Haha! Maybe in another 10,000 years you can beat me! Next time, don\'t use your ${playerChoice}, I will always play ${rockPaperScissors(computerSelection)}.`
-        ];
+buttonPressed.forEach((button) => {
+    button.addEventListener('click', e => {
+        let computerSelection = Math.floor(Math.random() * 3);
+        computerRock.classList.remove("hovered");
+        computerPaper.classList.remove("hovered");
+        computerScissors.classList.remove("hovered");
 
-        const won = [
-            `Congrats on the 1 win! Who knew you would pull out the ${playerChoice} to beat out my ${rockPaperScissors(computerSelection)}`,
-            `Sheesh! Congrats on the 2nd win! I guess ${playerChoice} really does beat my ${rockPaperScissors(computerSelection)}.`,
-            `Woah there! We got ourselves a winner. You really used your ${playerChoice} to defeat my ${rockPaperScissors(computerSelection)}!`,
-            `Look at you pulling out the ${playerChoice} to ruin my ${rockPaperScissors(computerSelection)}! 1 more and you win, I got to play seriously now!`,
-            `NOOOOoooo I didn't think you'd use ${playerChoice}! I shouldn't have used ${rockPaperScissors(computerSelection)}!`
-        ];
+        if (playerWins == 0 || computerWins == 0) {
+            playerResults.textContent = "Wins: 0";
+            computerResults.textContent = "Wins: 0";
+        }
+
+
+        if (e.path[0] == playerRock[0]) {
+            playerChoice = "rock";
+        } else if (e.path[0] == playerPaper[0]) {
+            playerChoice = "paper";
+        } else if (e.path[0] == playerScissors[0]) {
+            playerChoice = "scissors";
+        }
 
         if (playRound(playerChoice, computerSelection) == 0) {
-            console.log(draw[Math.floor(Math.random() * 5)]);
+            playerDialogue.textContent = `Draw! You both chose ${playerChoice}`;
+            computerDialogue.textContent = `Draw! You both chose ${playerChoice}`;
         } else if (playRound(playerChoice, computerSelection) == 1) {
-            console.log(lost[computerWins]);
             computerWins++;
+            playerDialogue.textContent = `You lost! Your oppenent chose ${rockPaperScissors(computerSelection)}!`;
+            computerDialogue.textContent = `Computer win! His ${rockPaperScissors(computerSelection)} beat your ${playerChoice}.`;
+            computerResults.textContent = `Wins: ${computerWins}`;
         } else if (playRound(playerChoice, computerSelection) == 2) {
-            console.log(won[playerWins]);
             playerWins++;
+            computerDialogue.textContent = `Computer lost! His ${rockPaperScissors(computerSelection)} lost to your ${playerChoice}.`;
+            playerDialogue.textContent = `Player Win! Your ${playerChoice} beat the computer's ${rockPaperScissors(computerSelection)}!`;
+            playerResults.textContent = `Wins: ${playerWins}`;
         } else {
             console.log("An Error occured!");
         }
 
         if (computerWins == 5) {
-            console.log("Congrats to the Computer as he is the first to get to 5 wins!");
             computerWins = 0;
             playerWins = 0;
-            continue;
+
+            computerResults.textContent = "Congrats to the Computer as he is the first to get to 5 wins!";
+            computerContainer.appendChild(computerResults);
+
+            playerResults.textContent = `Wins: ${playerWins}`;
+            playerContainer.appendChild(playerWins)
+
         } else if (playerWins == 5) {
-            console.log("Congrats to the Player as he is the first to get to 5 wins!")
             computerWins = 0;
             playerWins = 0;
-            continue;
+
+            playerResults.textContent = "Congrats to the Player as he is the first to get to 5 wins!";
+            computerResults.textContent = `Wins: ${computerWins}`;
         }
-    } else {
-        console.log("Wrong input. Please input rock, paper, or scissors only.");
-    }
-
-}
-
+    });
+});

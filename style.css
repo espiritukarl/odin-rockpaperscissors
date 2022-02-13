@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Orbitron:wght@800&family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Staatliches&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.header {
+    text-align: center;
+    font-family: Orbitron, sans-serif;
+    letter-spacing: 5px;
+    background-color: #dbd8d867;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+}
+
+
+.player-container, .computer-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+}
+
+.player-container {
+    background-color: #6d85ff;
+    border-right: solid 1px black;
+}
+
+.computer-container {
+    background-color: #ffb16d;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+button {
+    cursor: pointer;
+    outline: 0;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    background-color: transparent;
+    border: 1.8px solid transparent;
+    padding: 6px 12px;
+    font-size: 1rem;
+    border-radius: .5rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.computer-button {
+    color: #f80000;;
+    border-color: #f80000;
+}
+
+.player-button {
+    color: #2f00ff;
+    border-color: #2f00ff;
+}
+
+.player-button:hover {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.computer-button:hover, .hovered {
+    color: #fff;
+    background-color: #f83b3b;
+    border-color: #f83b3b;
+}
+
+#player-results, #computer-results, .player-dialogue, .computer-dialogue {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.8em;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title, button, span {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.title {
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.footer img {
+    height: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+}
